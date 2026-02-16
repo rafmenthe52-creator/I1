@@ -29,7 +29,7 @@ Status game_reader_load_spaces(Game *game, char *filename) {
   Id id = NO_ID, north = NO_ID, east = NO_ID, south = NO_ID, west = NO_ID;
   Space *space = NULL;
   Status status = OK;
-  Bool bool_object;
+  Bool bool_object = FALSE;
 
   if (!filename) {
     return ERROR;
