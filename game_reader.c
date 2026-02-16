@@ -31,7 +31,7 @@ Status game_reader_load_spaces(Game *game, char *filename) {
   Status status = OK;
   Bool bool_object = FALSE;
 
-  if (!filename) {
+  if (!filename || !game) {
     return ERROR;
   }
 
