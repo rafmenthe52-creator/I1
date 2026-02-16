@@ -94,6 +94,7 @@ Status game_reader_load_objects(Game* game, char* filename){
   char *toks = NULL;
   Id id = NO_ID, location = NO_ID;
   Object *object = NULL;
+  Space *space = NULL
   Status status = OK;
 
   if(!(filename)){
