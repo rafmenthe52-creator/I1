@@ -133,7 +133,7 @@ void game_actions_next(Game *game) {
     return;
   }
 
-  space_id = player_get_player_location(game->player);
+  space_id = game_get_player_location(game);
   if (space_id == NO_ID) {
     return;
   }    
@@ -154,7 +154,7 @@ void game_actions_back(Game *game) {
     return;
   }
 
-  space_id = player_get_player_location(game->player);
+  space_id = game_get_player_location(game);
 
   if (NO_ID == space_id) {
     return;
