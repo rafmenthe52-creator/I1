@@ -77,5 +77,17 @@ struct _Set{
             return TRUE;
         }
     }
-
   }
+
+   Void set_print(Set *s){
+    int i;
+
+    if(!s){
+        return;
+    }
+    for(i=0; i<s->n_ids; i++){
+        fprintf(stdout, "%s", s->ids[i]);
+    }
+
+   }
+
