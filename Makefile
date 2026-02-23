@@ -32,3 +32,6 @@ player.o: player.c player.h types.h
 
 space.o: space.c space.h types.h
 	$(CC) $(CFLAGS) $<
+
+clean:
+	rm -f $(OBJS) $(TARGET)
