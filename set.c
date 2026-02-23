@@ -70,7 +70,8 @@ Status set_delete(Set *s, Id id){
 
   for(i=0; i<s->n_ids; i++){
     if(s->ids[i]==id){
-      s->ids[i]=NO_ID;
+      s->ids[i]=s->ids[s->n_ids-1];
+      s->n_ids--;
       return OK
     }
   }

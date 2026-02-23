@@ -21,7 +21,7 @@ int game_loop_init(Game *game, Graphic_engine **gengine, char *file_name);
 void game_loop_cleanup(Game game, Graphic_engine *gengine);
 
 int main(int argc, char *argv[]) {
-  Game game;
+  Game *game;
   Graphic_engine *gengine;
   int result;
   Command *last_cmd;

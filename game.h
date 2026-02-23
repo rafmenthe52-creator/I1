@@ -22,15 +22,7 @@
 #define MAX_OBJECTS 1
 #define MAX_PLAYER 1
 
-typedef struct _Game {
-  Player *player;
-  Space *spaces[MAX_SPACES];
-  int n_spaces;
-  Object *objects[MAX_OBJECTS];
-  int n_objects;
-  Command *last_cmd;
-  Bool finished;
-} Game;
+typedef struct _Game Game;
 
 /**
  * @brief It creates a new Game, allocating memory for it;

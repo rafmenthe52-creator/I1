@@ -14,6 +14,16 @@
 #include <stdlib.h>
 #include <string.h>
 
+
+struct _Game{
+  Player *player;
+  Space *spaces[MAX_SPACES];
+  int n_spaces;
+  Object *objects[MAX_OBJECTS];
+  int n_objects;
+  Command *last_cmd;
+  Bool finished;
+}
 /**
    Private functions
 */
