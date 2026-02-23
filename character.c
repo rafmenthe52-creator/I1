@@ -32,11 +32,6 @@ Character* character_create(Id id){
     if(!(character=(Character*)calloc(1,sizeof(Character)))){
         return NULL;
     }
-
-
-
-
-
 }
 
 Status character_deleate(Character* character){
