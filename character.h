@@ -47,7 +47,7 @@ Id character_get_id(Character* character);
  * @author Adrian Covarrubias-AC
  *
  * @param character a pointer to the struct Character 
- * @param name 
+ * @param name a string with the name of the character
  * @return It returns the Status, either OK or ERROR
  */
 Status character_set_name(Character* character, char* name);
@@ -60,6 +60,25 @@ Status character_set_name(Character* character, char* name);
  * @return a string with the name of the character
  */
 const char* character_get_name(Character* character);
+
+/**
+ * @brief It sets the general description of the character
+ * @author Adrian Covarrubias-AC
+ *
+ * @param character a pointer to the struct Character 
+ * @param name a string with the general description of the character
+ * @return It returns the Status, either OK or ERROR
+ */
+Status character_set_gdesc(Character* character, char* gdesc);
+
+/**
+ * @brief It sets the general description of the character
+ * @author Adrian Covarrubias-AC
+ *
+ * @param character a pointer to the struct Character 
+ * @return a string with the general description of the character
+ */
+const char* charcater_get_gdesc(Character* character);
 
 
 
