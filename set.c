@@ -14,80 +14,98 @@
 #include <string.h>
 
 struct _Set{
-    long *ids;
-    int n_ids;
+  Id ids[MAX_SET];
+  int n_ids;
 };
 
- Set* set_create(){
-    Set *s=NULL;
-    
-    if(!(s=(Set*)calloc(1, sizeof(Set)))){
-        return NULL;
-    }
+Set* set_create(){
+  Set *s=NULL;
 
-    if(!(s->ids=(long*)calloc(s->n_ids, sizeof(long)))){
-        return NULL;
-    }
-    return s;
- }
+  if(!(s=(Set*)calloc(1, sizeof(Set)))){
+      return NULL;
+  }
+  return s;
+}
 
-  Status set_destroy(Set *s){
-    if(!s){
-        return ERROR;
-    }
-
-    free(s);
-    free(s->ids);
-    s = NULL;
-    s->ids = NULL;
-    return OK;
+Status set_destroy(Set *s){
+  if(!s){
+      return ERROR;
   }
 
-   Status set_add(Set *s, long Id){
-    if(!s || Id<=0){
-        return ERROR;
-    }
+  free(s);
+  free(s->ids);
+  s = NULL;
+  s->ids = NULL;
+  return OK;
+}
 
-    s->ids[s->n_ids]=ids;
-    s->n_ids++;
-
-    return OK;
- }
-
- Status set_deleate(Set *s, long Id){
-    if(!s || Id<=0 || s->n_ids<=0){
-        return ERROR;
-    }
-
-
-    s->ids[s->n_ids-1]=NO_ID;
-    s->n_ids--;
-
- }
-
-  Bool set_find(Set *s, long Id){
-    int i;
-    if(!s || Id<=0 || s->n_ids<=0){
-        return FALSE;
-    }
-    for(i=0; i<s->n_ids; i++){
-        if(s->ids[i]!=Id){
-            return FALSE;
-        }else{
-            return TRUE;
-        }
-    }
+Status set_add(Set *s, Id id){
+  if(!s || id<=0){
+      return ERROR;
   }
 
-   void set_print(Set *s){
-    int i;
+  /*we need to look if the id is already in the set*/
+  if(set_find(s, id)){
+    return ERROR;
+  }
 
-    if(!s){
-        return;
+
+  s->ids[s->n_ids]=id;
+  s->n_ids++;
+
+  return OK;
+}
+
+Status set_delete(Set *s, Id id){
+  if(!s || id<=0 || s->n_ids<=0){
+      return ERROR;
+  }
+
+
+  s->ids[s->n_ids-1]=NO_ID;
+  s->n_ids--;
+
+}
+
+Bool set_find(Set *s, Id id){
+  int i;
+  
+  if(!s || id<=0 || s->n_ids<=0){
+    return FALSE;
+  }
+
+  for(i=0; i<s->n_ids; i++){
+    if(s->ids[i]!=id){
+      return FALSE;
+    }else{
+      return TRUE;
     }
-    for(i=0; i<s->n_ids; i++){
-        fprintf(stdout, "%ld", s->ids[i]);
-    }
+  }
+}
 
-   }
+void set_print(Set *s){
+  int i;
 
+  if(!s){
+    return;
+  }
+  
+  for(i=0; i<s->n_ids; i++){
+    fprintf(stdout, "%ld", s->ids[i]);
+  }
+
+}
+
+Id* set_getIds(Set *s){
+  Id *list
+  int i;
+
+  /*Allocate memory, later we need to remember to free it*/
+  list=(Id*)malloc(s->n_ids*sizeof(Id));
+
+  for(i=0; i>s->n_ids; i++){
+    list[i]=s->Ids[i];
+  }  
+
+  return list;
+}

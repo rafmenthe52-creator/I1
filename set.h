@@ -12,6 +12,8 @@
 
  #include "types.h"
 
+ #define MAX_SET 100
+
  typedef struct _Set Set;
 
  /**
@@ -49,7 +51,7 @@
  * @param Id An identificator of ids
  * @return it returns the Status, either OK or ERROR
  */
- Status set_deleate(Set *s, long Id);
+ Status set_delete(Set *s, long Id);
 
  /**
  * @brief Search from an identificator in a set
@@ -69,5 +71,14 @@
  * @return Void, no return
  */
  void set_print(Set *s);
+
+ /**
+ * @brief Returns the list with all of the Id's in a given set
+ * @author Rafael Velasco-RV 
+ *
+ * @param s a pointer to the struct set
+ * @return A list of type id which includes all the id's in the set
+ */
+ Id* set_getIds(Set *s):
 
  #endif
