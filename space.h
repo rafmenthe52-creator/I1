@@ -177,13 +177,16 @@ Status space_set_object_id(Space* space, Id id);
 Id space_get_object_id(Space* space);
 
 /**
- * @brief It deletes the id of the last object in the game. It is used when taking objects from a space.
+ * @brief It deletes a specific object from its space
  * @author Rafael Velasco-RV
  *
  * @param space a pointer to the space
+ * @param id the id of the object which intends to be deleted
  * @return a boolean, specifying if in the space there is an object (TRUE) or not (FALSE)
  */
-Status space_delete_object(Space* space);
+Status space_delete_object(Space* space, ID id);
+
+Status space_delete_objects(Space* space)
 
 /**
  * @brief It prints the space information

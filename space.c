@@ -171,7 +171,11 @@ Status space_set_object_id(Space* space, Id id){
     return ERROR;
   }
 
-  space_add(space->object_ids, id)
+  if(!space->object_ids){
+    set_create(space->object_ids);
+  }
+
+  set_add(space->object_ids, id)
 
   space->object = TRUE;
   return OK;
@@ -185,15 +189,28 @@ Id* space_get_object_ids(Space* space){
   return set_getIds(space->object_ids);
 }
 
-Status space_delete_object(Space* space){
+Status space_delete_objects(Space* space){
   if(!space){
     return ERROR;
   }
 
-  space->object_id = NO_ID;
+  set_destroy(space->object_ids);
+
   space->object = FALSE;
 
   return OK;
+}
+
+Status space_delete_object(Space* space, Id id){
+  if(!space){
+    return ERROR;
+  }
+
+  if(set_delete(space->object_ids, id)==ERROR){
+    return ERROR;
+  }
+
+  return OK
 }
 
 Status space_print(Space* space) {
