@@ -15,6 +15,7 @@ struct Object {
   char name[WORD_SIZE + 1]; /*!< Name of the space */
   Id space;                 /*!< Id of the space the object is located at*/
   Id player;                /*!< Id of the player the player who is carrying the object*/
+  int damage;
 };
 
 
@@ -41,6 +42,7 @@ Object* object_create(Id id) {
   newObject->id = id;
   newObject->name[0] = '\0';
   newObject->object_location = NO_ID;
+  newObject->damage = 0;
 
   return newObject;
 }

@@ -38,9 +38,7 @@ Status set_destroy(Set *s){
   }
 
   free(s);
-  free(s->ids);
   s = NULL;
-  s->ids = NULL;
   return OK;
 }
 
@@ -51,7 +49,7 @@ Status set_add(Set *s, Id id){
 
   /*we need to look if the id is already in the set*/
   if(set_find(s, id)){
-    return ERROR;
+    return OK;
   }
 
 

@@ -12,6 +12,7 @@
 #define CHARACTER_H
 
 #include "types.h"
+#include "object.h"
 
 typedef struct _Character Character;
 
@@ -31,7 +32,7 @@ Character* character_create(Id id);
  * @param character a pointer to the struct Character 
  * @return It returns the Status, either OK or ERROR
  */
-Status character_deleate(Character* character);
+Status character_destroy(Character* character);
 
 /**
  * @brief It gets the Id of the character
@@ -80,6 +81,43 @@ Status character_set_gdesc(Character* character, char* gdesc);
  */
 const char* charcater_get_gdesc(Character* character);
 
+/**
+ * @brief It sets the health of the player
+ * @author Adrian Covarrubias-AC
+ *
+ * @param character a pointer to the struct Character
+ * @param id The id of the character
+ * @return It returns the Status, either OK or ERROR
+ */
+Status character_set_health(Character* character, ID id);
 
+/**
+ * @brief It gets the health of the player
+ * @author Adrian Covarrubias-AC
+ *
+ * @param character a pointer to the struct Character
+ * @return It returns the health of the character
+ */
+Id character_get_health(Character* character);
+
+/**
+ * @brief It adds health to the player
+ * @author Adrian Covarrubias-AC
+ *
+ * @param character a pointer to the struct Character
+ * @return It returns the Status, either OK or ERROR
+ */
+Status character_health_add(Character* character, Id id);
+
+/**
+ * @brief It decrease health to the player
+ * @author Adrian Covarrubias-AC
+ *
+ * @param character a pointer to the struct Character
+ * @param id The id of the character
+ * @param damage The damage the object makes
+ * @return It returns the Status, either OK or ERROR
+ */
+Status character_health_decrease(Character* character, Id id, int damage);
 
 #endif

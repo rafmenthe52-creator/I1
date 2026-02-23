@@ -41,7 +41,7 @@
   * @param Id An identificator of ids
  * @return It returns the Status, either OK or ERROR
  */
- Status set_add(Set *s, long Id);
+ Status set_add(Set *s, Id id);
 
  /**
  * @brief It deleates a value of the sets
@@ -51,7 +51,7 @@
  * @param Id An identificator of ids
  * @return it returns the Status, either OK or ERROR
  */
- Status set_delete(Set *s, long Id);
+ Status set_delete(Set *s, Id id);
 
  /**
  * @brief Search from an identificator in a set
@@ -61,7 +61,7 @@
  * @param Id An identificator of ids
  * @return TRUE if it fins it or FALSE if not
  */
- Bool set_find(Set *s, long id);
+ Bool set_find(Set *s, Id id);
 
  /**
  * @brief Prints the Ids from a set
