@@ -171,20 +171,18 @@ Status space_set_object_id(Space* space, Id id){
     return ERROR;
   }
 
-  space_add;
+  space_add(space->object_ids, id)
 
-  space->object_ids
-
-  space->object_id = id;
   space->object = TRUE;
   return OK;
 }
 
-Id space_get_object_id(Space* space){
+Id* space_get_object_ids(Space* space){
   if(!space){
-    return NO_ID;
+    return -1;
   }
-  return space->object_id;
+
+  return set_getIds(space->object_ids);
 }
 
 Status space_delete_object(Space* space){

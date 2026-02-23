@@ -24,6 +24,11 @@ Set* set_create(){
   if(!(s=(Set*)calloc(1, sizeof(Set)))){
       return NULL;
   }
+
+  for(i=0, i<MAX_SET, i++){
+    s->ids=NO_ID;
+  }
+
   return s;
 }
 
@@ -40,8 +45,8 @@ Status set_destroy(Set *s){
 }
 
 Status set_add(Set *s, Id id){
-  if(!s || id<=0){
-      return ERROR;
+  if(!s || id<=0 || s->n_ids>=MAX_SET){
+    return ERROR;
   }
 
   /*we need to look if the id is already in the set*/
@@ -57,14 +62,20 @@ Status set_add(Set *s, Id id){
 }
 
 Status set_delete(Set *s, Id id){
+  int i;
+  
   if(!s || id<=0 || s->n_ids<=0){
-      return ERROR;
+    return ERROR;
   }
 
+  for(i=0; i<s->n_ids; i++){
+    if(s->ids[i]==id){
+      s->ids[i]=NO_ID;
+      return OK
+    }
+  }
 
-  s->ids[s->n_ids-1]=NO_ID;
-  s->n_ids--;
-
+  return ERROR;
 }
 
 Bool set_find(Set *s, Id id){
