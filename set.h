@@ -81,4 +81,13 @@
  */
  Id* set_getIds(Set *s):
 
+  /**
+ * @brief Returns the number of elements in a given set
+ * @author Rafael Velasco-RV 
+ *
+ * @param s a pointer to the struct set
+ * @return the number of Ids in the set (int)
+ */
+ int set_get_nIds(Set *s);
+
  #endif

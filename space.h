@@ -168,16 +168,16 @@ Bool space_get_object(Space* space);
 Status space_set_object_id(Space* space, Id id);
 
 /**
- * @brief It gets the id of the last object in the space
+ * @brief It gets the list of ids in a given space
  * @author Rafael Velasco-RV
  *
  * @param space a pointer to the space
- * @return a boolean, specifying if in the space there is an object (TRUE) or not (FALSE)
+ * @return The list of ids in the space
  */
-Id space_get_object_id(Space* space);
+Id* space_get_object_ids(Space* space);
 
 /**
- * @brief It deletes a specific object from its space
+ * @brief It deletes a specific object from a given space
  * @author Rafael Velasco-RV
  *
  * @param space a pointer to the space
@@ -186,6 +186,13 @@ Id space_get_object_id(Space* space);
  */
 Status space_delete_object(Space* space, ID id);
 
+/**
+ * @brief It deletes all the objects in a given space
+ * @author Rafael Velasco-RV
+ *
+ * @param space a pointer to the space
+ * @return a boolean, specifying if in the space there is an object (TRUE) or not (FALSE)
+ */
 Status space_delete_objects(Space* space)
 
 /**

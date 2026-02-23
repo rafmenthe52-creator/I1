@@ -119,3 +119,9 @@ Id* set_getIds(Set *s){
 
   return list;
 }
+
+int set_get_nIds(Set *s){
+  if(!s) return ERROR;
+
+  return set->n_ids;
+}
