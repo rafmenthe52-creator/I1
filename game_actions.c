@@ -92,6 +92,8 @@ void game_actions_take(Game *game);
  */
 void game_actions_drop(Game *game);
 
+void game_actions_attack(Game *game);
+
 /**
    Game actions implementation
 */
@@ -142,10 +144,6 @@ Status game_actions_update(Game *game, Command *command) {
 void game_actions_unknown(Game *game) {}
 
 void game_actions_exit(Game *game) {}
-
-void game_actions_left(Game *game){}
-
-void game_actions_right(Game *game){}
 
 void game_actions_next(Game *game) {
   Id current_id = NO_ID;
@@ -232,10 +230,6 @@ void game_actions_right(Game *game) {
 
   return;
 }
-
-void game_actions_take(Game *game){}
-
-void game_actions_drop(Game *game){}
 
 void game_actions_take(Game *game){
   Id current_id = NO_ID;
@@ -330,4 +324,16 @@ void game_actions_drop(Game *game){
   return; 
 }
 
-/*Implement new game actions for left right movement */
+void game_actions_attack(Game *game){
+  ID idObjAux=NO_ID
+
+  if(!game||!game_get_player(game)){
+    return;
+  }
+
+  if((idObjAux=player_get_objects(game_get_player(game)))==NO_ID){
+    return;
+  }
+
+  
+}
