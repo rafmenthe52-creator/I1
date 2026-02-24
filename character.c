@@ -95,39 +95,41 @@ const char* charcater_get_gdesc(Character* character){
   return character->gdesc;
 }
 
-Status character_set_health(Charcter* character, ID id){
-  if(!character || id==NO_ID){
+Status character_set_health(Charcter* character, int health){
+  if(!character || health>MAX_HEALTH || health<0){
     return ERROR;
   }
 
-  If(character->health>MAX_HEALTH){
-    return ERROR;
-  }
+  character->health=health;
 return OK;
 }
 
-Id character_get_health(Character* character){
+int character_get_health(Character* character){
   if(!character){
     return 0;
   }
   return character->health;
 }
 
-Status character_health_add(Character* character, Id id){
-  if(!character || id==NO_ID || character->health>MAX_HEALTH){
+Status character_health_add(Character* character){
+  if(!character || character->health>=MAX_HEALTH){
     return ERROR;
   }
   character->health++;
   return OK;
 }
 
-Status character_health_decrease(Character* character, Id id, int damage){
+Status character_health_decrease(Character* character, int damage){
   int i;
-  if(!character || id==NO_ID || damage<0 || character->health<=0){
+  if(!character || damage<0 || character->health<=0){
     return ERROR;
   }
 
   character->health-=damage;
+
+  if(character->health<=0){
+    character_destroy(character);
+  }
 
   return OK;
 }

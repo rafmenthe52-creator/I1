@@ -14,6 +14,7 @@
 #include <string.h>
 
 #define MAX_OBJECTS 1
+#define MAX_HEALTH 10
 
 /**
  * @brief Space
@@ -52,6 +53,7 @@ Player* player_create(Id id) {
     newPlayer->objects[i] = NO_ID;
   }
   newPlayer->n_objects_player = 0;
+  newPlayer->health = MAX_HEALTH
   
   
   return newPlayer;
@@ -146,6 +148,37 @@ int player_get_n_objects(Player* player){
   }
 
   return player->n_objects_player;
+}
+
+Status player_set_health(Player* player, int health){
+  if(!player || health>MAX_HEALTH || health<0){
+    return ERROR;
+  }
+  player->health=health;
+}
+
+int player_get_health(Player* player){
+  if(!player){
+    return 0;
+  }
+  return player->health;
+}
+
+Status player_health_add(Player* player){
+  if(!player || player->health>=MAX_HEALTH){
+    return ERROR;
+  }
+  player->health++;
+  return OK;
+}
+
+
+Status player_health_decrease(Player* player, int damage){
+  if(!player || player->health<=0 || damage<0){
+    return ERROR;
+  }
+  player->health-=damage;
+  return OK;
 }
 
 Status player_print(Player* player) {

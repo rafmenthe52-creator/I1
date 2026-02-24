@@ -111,9 +111,47 @@ Id player_get_objects(Player* player);
 * @author Rafael Velasco-RV
 * 
 * @param player a pointer to the player
-* @return The status, either ERROR or OK;
+* @return The status, either ERROR or OK
 */
 Status player_delete_object_from_inventory(Player *player);
+
+/**
+ * @brief It sets the health of the player
+ * @author Adrian Covarrubias-AC
+ *
+ * @param player a pointer to the player
+ * @param health the health of the player
+ * @return The status, either ERROR or OK
+ */
+Status player_set_health(Player* player, int health);
+
+/**
+ * @brief It gets the health of the player
+ * @author Adrian Covarrubias-AC
+ *
+ * @param player a pointer to the player
+ * @return It returns the health of the player
+ */
+int character_get_health(Player* player);
+
+/**
+ * @brief It adds health to the player
+ * @author Adrian Covarrubias-AC
+ *
+ * @param player a pointer to the player
+ * @return It returns the Status, either OK or ERROR
+ */
+Status player_health_add(Player* player);
+
+/**
+ * @brief It decrease health to the player
+ * @author Adrian Covarrubias-AC
+ *
+ * @param player a pointer to the player
+ * @param damage The damage the object makes
+ * @return It returns the Status, either OK or ERROR
+ */
+Status player_health_decrease(Player* player, int damage);
 
 /**
  * @brief It prints the player information

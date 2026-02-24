@@ -82,43 +82,42 @@ Status character_set_gdesc(Character* character, char* gdesc);
 const char* charcater_get_gdesc(Character* character);
 
 /**
- * @brief It sets the health of the player
+ * @brief It sets the health of the character
  * @author Adrian Covarrubias-AC
  *
  * @param character a pointer to the struct Character
- * @param id The id of the character
+ * @param health The health of hte character
  * @return It returns the Status, either OK or ERROR
  */
-Status character_set_health(Character* character, ID id);
+Status character_set_health(Character* character, int health);
 
 /**
- * @brief It gets the health of the player
+ * @brief It gets the health of the character
  * @author Adrian Covarrubias-AC
  *
  * @param character a pointer to the struct Character
  * @return It returns the health of the character
  */
-Id character_get_health(Character* character);
+int character_get_health(Character* character);
 
 /**
- * @brief It adds health to the player
+ * @brief It adds health to the character
  * @author Adrian Covarrubias-AC
  *
  * @param character a pointer to the struct Character
  * @return It returns the Status, either OK or ERROR
  */
-Status character_health_add(Character* character, Id id);
+Status character_health_add(Character* character);
 
 /**
- * @brief It decrease health to the player
+ * @brief It decrease health to the character and destroys it if their health is 0
  * @author Adrian Covarrubias-AC
  *
  * @param character a pointer to the struct Character
- * @param id The id of the character
  * @param damage The damage the object makes
  * @return It returns the Status, either OK or ERROR
  */
-Status character_health_decrease(Character* character, Id id, int damage);
+Status character_health_decrease(Character* character, int damage);
 
 /**
  * @brief It sets if the character is friendly or not
