@@ -25,7 +25,7 @@
  * @author Profesores PPROG
  *
  * @param game a pointer to a struct of type Game
- * @return it returns the Status, either OK or ERROR
+ * @return void, no return
  */
 void game_actions_unknown(Game *game);
 
@@ -34,7 +34,7 @@ void game_actions_unknown(Game *game);
  * @author Profesores PPROG
  *
  * @param game a pointer to a struct of type Game
- * @return it returns the Status, either OK or ERROR
+ * @return void, no return
  */
 void game_actions_exit(Game *game);
 
@@ -43,7 +43,7 @@ void game_actions_exit(Game *game);
  * @author Profesores PPROG
  *
  * @param game a pointer to a struct of type Game
- * @return it returns the Status, either OK or ERROR
+ * @return void, no return
  */
 void game_actions_next(Game *game);
 
@@ -52,7 +52,7 @@ void game_actions_next(Game *game);
  * @author Profesores PPROG
  *
  * @param game a pointer to a struct of type Game
- * @return it returns the Status, either OK or ERROR
+ * @return void, no return
  */
 void game_actions_back(Game *game);
 
@@ -61,7 +61,7 @@ void game_actions_back(Game *game);
  * @author Adrian Covarrubias-AC
  *
  * @param game a pointer to a struct of type Game
- * @return it returns the Status, either OK or ERROR
+ * @return void, no return
  */
 void game_actions_left(Game *game);
 
@@ -70,7 +70,7 @@ void game_actions_left(Game *game);
  * @author Adrian Covarrubias-AC
  *
  * @param game a pointer to a struct of type Game
- * @return it returns the Status, either OK or ERROR
+ * @return void, no return
  */
 void game_actions_right(Game *game);
 
@@ -79,7 +79,7 @@ void game_actions_right(Game *game);
  * @author Adrian Covarrubias-AC & Rafael Velasco-RV
  *
  * @param game a pointer to a struct of type Game
- * @return it returns the Status, either OK or ERROR
+ * @return void, no return
  */
 void game_actions_take(Game *game);
 
@@ -88,11 +88,20 @@ void game_actions_take(Game *game);
  * @author Adrian Covarrubas-AC & Rafael Velasco-RV
  *
  * @param game a pointer to a struct of type Game
- * @return it returns the Status, either OK or ERROR
+ * @return void, no return
  */
 void game_actions_drop(Game *game);
 
+/**
+ * @brief This function decreases the health of the character in a space according to the damage of the object in the players inventory
+ * @author Rafael Velasco-RV
+ *
+ * @param game a pointer to a struct of type Game
+ * @return void, no return
+ */
 void game_actions_attack(Game *game);
+
+void game_actions_chat(Game *game);
 
 /**
    Game actions implementation
@@ -326,6 +335,8 @@ void game_actions_drop(Game *game){
 
 void game_actions_attack(Game *game){
   ID idObjAux=NO_ID
+  Object *object;
+  int damage, health;
 
   if(!game||!game_get_player(game)){
     return;
@@ -335,5 +346,23 @@ void game_actions_attack(Game *game){
     return;
   }
 
+  if(!(object=game_get_object(game, idObjAux))){
+    return;
+  }
   
+  damage=object_get_damage(object);
+
+  health=character_get_health(space_get_character(game_get_space(game)));
+
+  character_health_decrease(space_get_character(game_get_space(game)), damage);
+
+  if(health<=damage){
+    fprintf(stdout, "Character %ld defeated", character_get_id(space_get_character(game_get_space(game))));
+  }
+
+  return;
+}
+
+void game_actions_chat(Game *game){
+
 }

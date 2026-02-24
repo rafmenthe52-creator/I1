@@ -125,6 +125,20 @@ Id object_get_player(Object *object){
   return object->player; 
 }
 
+Status object_set_damage(Object* object, int damage){
+  if(!object){
+    return ERROR;
+  }
+
+  object->damage=damage;
+
+  return OK;
+}
+
+int object_get_damage(Object* object){
+  return object->damage;
+}
+
 Status object_print(Object* object) {
   Id idaux = NO_ID;
 
