@@ -191,7 +191,7 @@ Status character_print(Character* character){
     fprintf(stdout, "--> Friendly");
   }
 
-    fprintf(stdou, "--> Message: %s", character->message);
+    fprintf(stdout, "--> Message: %s", character->message);
   
 return OK;
 }
