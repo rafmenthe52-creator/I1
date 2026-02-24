@@ -67,13 +67,13 @@ const char* character_get_name(Character* character);
  * @author Adrian Covarrubias-AC
  *
  * @param character a pointer to the struct Character 
- * @param name a string with the general description of the character
+ * @param gdesc a stirng with the general descirption of the character
  * @return It returns the Status, either OK or ERROR
  */
 Status character_set_gdesc(Character* character, char* gdesc);
 
 /**
- * @brief It sets the general description of the character
+ * @brief It gets the general description of the character
  * @author Adrian Covarrubias-AC
  *
  * @param character a pointer to the struct Character 
@@ -119,5 +119,55 @@ Status character_health_add(Character* character, Id id);
  * @return It returns the Status, either OK or ERROR
  */
 Status character_health_decrease(Character* character, Id id, int damage);
+
+/**
+ * @brief It sets if the character is friendly or not
+ * @author Adrian Covarrubias-AC
+ *
+ * @param character a pointer to the struct Character
+ * @param value a boolean, specifying if the character there is friendly (TRUE) or not (FALSE)
+ * @return It returns the Status, either OK or ERROR
+ */
+Status character_set_ifenemy(Character* character, Bool value);
+
+/**
+ * @brief It gets if the character is friendly or not
+ * @author Adrian Covarrubias-AC
+ *
+ * @param character a pointer to the struct Character
+ * @return a boolean, specifying if the character is friendly (TRUE) or not (FALSE)
+ */
+Bool character_get_ifenemy(Character* character);
+
+/**
+ * @brief It sets a message of the character 
+ * @author Adrian Covarrubias-AC
+ *
+ * @param character a pointer to the struct Character
+ * @param message a string with a message of the character
+ * @return It returns the Status, either OK or ERROR
+ */
+Status character_set_message(Character* character, char* message);
+
+/**
+ * @brief It gets a message of the character
+ * @author Adrian Covarrubias-AC
+ *
+ * @param character a pointer to the struct Character 
+ * @return a string with the message of the character
+ */
+const char* charcater_get_message(Character* character);
+
+/**
+ * @brief It prints the character information
+ * @author Adrian Covarrubias-AC
+ *
+ * This fucntion shows the id and name of the character, the gdesc of the character, the health of the character, a message of the character and if the character is friendly or not.
+ * @param character a pointer to the struct Character
+ * @return OK, if everything goes well or ERROR if there was some mistake
+ */
+Status character_print(Character* character);
+
+
 
 #endif

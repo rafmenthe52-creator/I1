@@ -99,6 +99,7 @@ Status character_set_health(Charcter* character, ID id){
   if(!character || id==NO_ID){
     return ERROR;
   }
+
   If(character->health>MAX_HEALTH){
     return ERROR;
   }
@@ -130,3 +131,69 @@ Status character_health_decrease(Character* character, Id id, int damage){
 
   return OK;
 }
+
+Status character_set_ifenemy(Character* character, Bool value){
+  if(!character){
+    return ERROR;
+  }void set_print(Set *s)
+  character->friendly = value;
+  return OK;
+}
+
+Bool character_get_ifenemy(Character* character){
+  if(!character){
+    return FALSE;
+  }
+  return character->friendly;
+}
+
+Status character_set_message(Character* character, char* message){
+  if(!character || message>WORD_SIZE){
+    return ERROR;
+  }
+  if(!(strcpy(character->message, message))){
+    return ERROR,
+  }
+  return OK;
+}
+
+const char* charcater_get_message(Character* character){
+  if(!character){
+    return NULL;
+  }
+  return character->message;
+}
+
+Status character_print(Character* character){
+  if(!character){
+    return ERROR;
+  }
+
+  fprintf(stdout, "--> Character (ID: %ld; Name: %s)\n", character->id, character->name);
+
+  if(character_get_gdesc(character)==ERROR){
+    return ERROR;
+  }else{
+    fprintf(stdout, "--> Graphical description: %s", character->gdesc);
+  }
+
+  if(character_get_health(Character* character)==0){
+    return;
+  }else{
+    fprintf(stdout, "--> Health: %d", character->health);
+  }
+
+  if(character_get_ifenemy(character)==FALSE){
+    fprintf(stdout, "--> Enemy");
+  }else{
+    fprintf(stdout, "--> Friendly");
+  }
+
+    fprintf(stdou, "--> Message: %s", character->message);
+  
+return OK;
+}
+
+
+
+
