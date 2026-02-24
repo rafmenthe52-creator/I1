@@ -23,6 +23,7 @@ struct _Game{
   int n_objects;
   Command *last_cmd;
   Bool finished;
+  Character *characters[MAX_CHARACTERS]
 }
 /**
    Private functions

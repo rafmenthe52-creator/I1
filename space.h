@@ -163,7 +163,7 @@ Bool space_get_object(Space* space);
  * @author Rafael Velasco-RV
  *
  * @param space a pointer to the space
- * @return a boolean, specifying if in the space there is an object (TRUE) or not (FALSE)
+ * @return OK, if everything goes well or ERROR if there was some mistake
  */
 Status space_set_object_id(Space* space, Id id);
 
@@ -182,7 +182,7 @@ Id* space_get_object_ids(Space* space);
  *
  * @param space a pointer to the space
  * @param id the id of the object which intends to be deleted
- * @return a boolean, specifying if in the space there is an object (TRUE) or not (FALSE)
+ * @return OK, if everything goes well or ERROR if there was some mistake
  */
 Status space_delete_object(Space* space, ID id);
 
@@ -191,9 +191,38 @@ Status space_delete_object(Space* space, ID id);
  * @author Rafael Velasco-RV
  *
  * @param space a pointer to the space
- * @return a boolean, specifying if in the space there is an object (TRUE) or not (FALSE)
+ * @return OK, if everything goes well or ERROR if there was some mistake
  */
 Status space_delete_objects(Space* space)
+
+/**
+ * @brief It sets the id of the character in a space with the given id
+ * @author Rafael Velasco-RV
+ *
+ * @param space a pointer to the space
+ * @param id the id of the character which intends to be assigned to this space
+ * @return OK, if everything goes well or ERROR if there was some mistake
+ */
+Status space_set_character(Space* space, Id id);
+
+/**
+ * @brief It gets the id of the character in the space
+ * @author Rafael Velasco-RV
+ *
+ * @param space a pointer to the space
+ * @return The id of the character in the space
+ */
+Id space_get_character(Space* space);
+
+
+/**
+ * @brief It deletes the character from the space. sets id to NO_ID
+ * @author Rafael Velasco-RV
+ *
+ * @param space a pointer to the space
+ * @return OK, if everything goes well or ERROR if there was some mistake
+ */
+Status space_delete_character(Space* space);
 
 /**
  * @brief It prints the space information

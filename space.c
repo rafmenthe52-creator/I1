@@ -28,6 +28,7 @@ struct _Space {
   Id west;                  /*!< Id of the space at the west */
   Bool object;              /*!< Whether the space has an object or not */
   Set *object_set;          /*!< Ids of the objects in the space, if any */
+  Id character;             /*!< The Id of the character in the space*/
 };
 
 /** space_create allocates memory for a new space
@@ -52,7 +53,9 @@ Space* space_create(Id id) {
   newSpace->east = NO_ID;
   newSpace->west = NO_ID;
   newSpace->object = FALSE;
-  space->object_set=set_create()
+  newspace->object_set=set_create();
+  newSpace->character=NO_ID;
+
 
   return newSpace;
 }
@@ -212,6 +215,34 @@ Status space_delete_object(Space* space, Id id){
   }
 
   return OK
+}
+
+Status space_set_character(Space* space, Id id){
+  if(!space||id==NO_ID||id<0){
+    return ERROR;
+  }
+
+  space->character=id;
+
+  return OK;
+}
+
+Id space_get_character(Space* space){
+  id(!space){
+    return NO_ID;
+  }
+
+  return space->character;
+}
+
+Status space_delete_character(Space* space){
+  if(!space){
+    return ERROR;
+  }
+
+  space->character=NO_ID;
+
+  return OK;
 }
 
 Status space_print(Space* space) {
