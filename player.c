@@ -207,5 +207,11 @@ Status player_print(Player* player) {
     fprintf(stdout, "---> Player has no objects.\n");
   }
 
+  if(player_get_health(player)==0){
+    return ERROR;
+  }else{
+    fprintf(stdout, "--> Health: %d.\n", player->health);
+  }
+
   return OK;
 }
