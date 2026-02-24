@@ -130,6 +130,3 @@ Status character_health_decrease(Character* character, Id id, int damage){
 
   return OK;
 }
-
-
-

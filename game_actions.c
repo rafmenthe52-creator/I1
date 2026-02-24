@@ -151,7 +151,7 @@ void game_actions_next(Game *game) {
   Id current_id = NO_ID;
   Id space_id = NO_ID;
 
-  if (!game || !game->player) {
+  if (!game || !game_get_player(game)) {
     return;
   }
 
@@ -162,7 +162,7 @@ void game_actions_next(Game *game) {
 
   current_id = space_get_south(game_get_space(game, space_id));
   if (current_id != NO_ID) {
-    player_set_player_location(game->player, current_id);
+    player_set_player_location(game_get_player(game), current_id);
   }
 
   return;
@@ -172,7 +172,7 @@ void game_actions_back(Game *game) {
   Id current_id = NO_ID;
   Id space_id = NO_ID;
 
-  if (!game || !game->player) {
+  if (!game || !game_get_player(game)) {
     return;
   }
 
@@ -184,7 +184,7 @@ void game_actions_back(Game *game) {
 
   current_id = space_get_north(game_get_space(game, space_id));
   if (current_id != NO_ID) {
-    player_set_player_location(game->player, current_id);
+    player_set_player_location(game_get_player(game), current_id);
   }
 
   return;
@@ -195,7 +195,7 @@ void game_actions_left(Game *game) {
   Id current_id = NO_ID;
   Id space_id = NO_ID;
 
-  if (!game || !game->player) {
+  if (!game || !game_get_player(game)) {
     return;
   }
 
@@ -206,7 +206,7 @@ void game_actions_left(Game *game) {
 
   current_id = space_get_west(game_get_space(game, space_id));
   if (current_id != NO_ID) {
-    player_set_player_location(game->player, current_id);
+    player_set_player_location(game_get_player(game), current_id);
   }
 
   return;
@@ -216,7 +216,7 @@ void game_actions_right(Game *game) {
   Id current_id = NO_ID;
   Id space_id = NO_ID;
 
-  if (!game || !game->player) {
+  if (!game || !game_get_player(game)) {
     return;
   }
 
@@ -227,7 +227,7 @@ void game_actions_right(Game *game) {
 
   current_id = space_get_east(game_get_space(game, space_id));
   if (current_id != NO_ID) {
-    player_set_player_location(game->player, current_id);
+    player_set_player_location(game_get_player(game), current_id);
   }
 
   return;
@@ -242,15 +242,15 @@ void game_actions_take(Game *game){
   Id player_space_id = NO_ID;
   Object *obj = NULL;
 
-  if(!game || !game->player){
+  if(!game || !game_get_player(game)){
     return;
   }
 
-  if(player_get_n_objects(game->player) >= MAX_OBJECTS){
+  if(player_get_n_objects(game_get_player(game)) >= MAX_OBJECTS){
     return;
   }
 
-  player_space_id = player_get_player_location(game->player);
+  player_space_id = player_get_player_location(game_get_player(game));
   if(player_space_id == NO_ID){
     return;
   }
@@ -268,7 +268,7 @@ void game_actions_take(Game *game){
   }
 
   /* Add object to player inventory */
-  player_set_objects(game->player, current_id);
+  player_set_objects(game_get_player(game), current_id);
 
   /* Update object location to NO_ID since it's now in player inventory */
   obj = game_get_object(game, current_id);
@@ -277,7 +277,7 @@ void game_actions_take(Game *game){
     object_set_location(obj, NO_ID);
 
     /* Assign object location to player*/
-    object_set_player(obj, player_get_id(game->player))
+    object_set_player(obj, player_get_id(game_get_player(game)))
   }
 
   return;
@@ -288,16 +288,16 @@ void game_actions_drop(Game *game){
   Id player_space_id = NO_ID;
   Object *obj = NULL;
 
-  if(!game || !game->player){
+  if(!game || !game_get_player(game)){
     return;
   }
 
-  if(player_get_n_objects(game->player) == 0){
+  if(player_get_n_objects(game_get_player(game)) == 0){
     return;
   }
 
 
-  player_space_id = player_get_player_location(game->player);
+  player_space_id = player_get_player_location(game_get_player(game));
   if(player_space_id == NO_ID){
     return;
   }
@@ -308,7 +308,7 @@ void game_actions_drop(Game *game){
   }
 
   /* Get object id from player "inventory" */
-  current_id = player_get_objects(game->player);
+  current_id = player_get_objects(game_get_player(game));
   if(current_id == NO_ID){
     return;
   }
@@ -325,9 +325,9 @@ void game_actions_drop(Game *game){
     object_set_location(obj, player_space_id);
   }
 
-  player_delete_object_from_inventory(game->player);
+  player_delete_object_from_inventory(game_get_player(game));
 
   return; 
 }
 
-/*Implement nw game actions for left right movement */
+/*Implement new game actions for left right movement */
